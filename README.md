@@ -7,7 +7,7 @@ Zápočtovým úkolem bylo navzorkovat obdelníkovou funkci a užitím rychlé f
 
 ### Řešení
 
-Při řešení volíme interval od _0_ s do _2000_ s a celkový počet vzorků _2^20 = 1 048 576_ (jedná se o mocninu 2 z důvodu následného užití rychlé fourierovy transformace). Odtud obdržíme hodnotu pro časový krok cca _0,0019_ s, Nyquistovu frekvenci cca _262,144_ Hz a frekvenční krok _0,000 25_ Hz.
+Při řešení volíme interval od _0_ s do _2000_ s a celkový počet vzorků _2^20 = 1 048 576_ (jedná se o mocninu 2 z důvodu následného užití rychlé fourierovy transformace). Odtud obdržíme hodnotu pro časový krok cca _0,0019_ s, Nyquistovu frekvenci cca _262,144_ Hz a frekvenční krok _0,00025_ Hz.
 
 Dále frekvenční filtr definujeme jako frekvenci oříznutí _10_ Hz a ostrostí oříznutí (odpovídající šířce přechodové oblasti mezi plně propustnou oblastí a plně nepropustnou oblastí, pro zhlazení přechodu). Volíme tři modely s rozlišnými hodnotami ostrosti oříznutí:
 * SHARP _0,2_ Hz
