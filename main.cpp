@@ -7,8 +7,8 @@
 #define WIDTH           float  ( 2000.0f )
 #define REC_WIDTH       float  ( 1.0f )
 #define NUM_EXP         int    ( 20 )
-#define CUTOFF          float  ( 10.0f )
-#define CUTSHARPNESS    float  ( 10.0f )
+#define CUTOFF          float  ( 0.2f )
+#define CUTSHARPNESS    float  ( 0.002f )
 
 #define PI              float  ( 3.14159265f )
 
