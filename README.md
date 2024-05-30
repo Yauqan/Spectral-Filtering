@@ -3,21 +3,21 @@
 
 ### Zadání
 
-Zápočtovým úkolem bylo navzorkovat obdelníkovou funkci a užitím rychlé fourierovy transformace nalézt její spektrum. Dále provést filtraci ve spektrální oblasti a filtrovaný signál převést zpět do reálné oblasti.
+Zápočtovým úkolem bylo navzorkovat obdelníkovou funkci a užitím rychlé fourierovy transformace nalézt její spektrum. Dále provést highpass filtraci ve spektrální oblasti a filtrovaný signál převést zpět do reálné oblasti.
 
 ### Řešení
 
-Při řešení volíme interval od _0_ s do _2000_ s a celkový počet vzorků _2^20 = 1 048 576_ (jedná se o mocninu 2 z důvodu následného užití rychlé fourierovy transformace). Odtud obdržíme hodnotu pro časový krok cca _0,0019_ s, Nyquistovu frekvenci cca _262,144_ Hz a frekvenční krok _0,00025_ Hz.
+Při řešení volíme interval od _0_ s do _2000_ s a celkový počet vzorků _2^20 = 1 048 576_ (jedná se o mocninu 2 z důvodu následného užití rychlé fourierovy transformace). Odtud obdržíme hodnotu pro časový krok cca _0,0019_ s, Nyquistovu frekvenci cca _262,144_ Hz a frekvenční krok _0,000 25_ Hz.
 
-Dále frekvenční filtr definujeme jako frekvenci oříznutí _10_ Hz a ostrostí oříznutí (odpovídající šířce přechodové oblasti mezi plně propustnou oblastí a plně nepropustnou oblastí, pro zhlazení přechodu). Volíme tři modely s rozlišnými hodnotami ostrosti oříznutí:
-* SHARP _0,2_ Hz
-* BLUNT _2,0_ Hz
-* VERYBLUNT _10,0_ Hz
-Filtraci provádíme jak Lowpass - jakožto samotnou filtraci signálu, tak i Highpass - za účelem sledování ztracené části.
+Dále frekvenční filtr definujeme jako frekvenci oříznutí _0,2_ Hz a ostrostí oříznutí (odpovídající šířce přechodové oblasti mezi plně propustnou oblastí a plně nepropustnou oblastí, pro zhlazení přechodu). Volíme tři modely s rozlišnými hodnotami ostrosti oříznutí:
+* SHARP _0,002_ Hz
+* BLUNT _0,04_ Hz
+* VERYBLUNT _0,2_ Hz
+Filtraci provádíme jak Highpass - jakožto samotnou filtraci signálu, tak i Lowpass - za účelem sledování ztracené části.
 
 ### Výsledky
 
-Pro včechny tři modely byl na vstupu využit stejný signál. Jeho graf na malém intervalu uvádíme v [grafu vstupního signálu](result/SHARP/01-timeDomain.pdf). Dále uvádíme jeho [spektrum](result/SHARP/02-SpectralDomain.pdf) a pro jednotlivé modely uvádíme v tabulce níže lowpass filtry a výsledky:
+Pro včechny tři modely byl na vstupu využit stejný signál. Jeho graf na malém intervalu uvádíme v [grafu vstupního signálu](result/SHARP/01-timeDomain.pdf). Dále uvádíme jeho [spektrum](result/SHARP/02-SpectralDomain.pdf) (spektrum nevynášíme celé, pouze jeho centrální část) a pro jednotlivé modely uvádíme v tabulce níže lowpass filtry a výsledky:
 
 |Model|Lowpass filtr|Výsledek ve spektrální oblasti|Výsledek v časové oblasti|
 |-----|-------------|------------------------------|--------------|
@@ -25,7 +25,7 @@ Pro včechny tři modely byl na vstupu využit stejný signál. Jeho graf na mal
 |BLUNT|[BLUNT filtr](result/BLUNT/03-Lowpass.pdf)|[spektrální oblast](result/BLUNT/04-SpectralDomainFiltered.pdf)|[časová oblast](result/BLUNT/05-timeDomainFiltered.pdf)|
 |VERYBLUNT|[VERYBLUNT filtr](result/VERYBLUNT/03-Lowpass.pdf)|[spektrální oblast](result/VERYBLUNT/04-SpectralDomainFiltered.pdf)|[časová oblast](result/VERYBLUNT/05-timeDomainFiltered.pdf)|
 
-Jak vidíme zvětšení přechodové oblasti významně potlačuje pozorovatelnost Gibbsova jevu na krajích obdelníkové funkce.
+Jak vidíme zvětšení přechodové oblasti významně zpřesňuje hodnotu na hranici obdelníku, ovšem vzhledem k odstranění nejižších frekvencí přicházíme o zachování plochy pod signálem.
 
 ### Implementace
 
@@ -34,3 +34,7 @@ Hlavní [soubor programu](main.cpp) obsahuje definice volených parametrů úloh
 ### Kompilace
 
 Kompilaci je možné provést voláním příkazu _make_ v adresáři _code/_. Dále spustit program _./main_ v hlavním adresáři.
+
+### Přehledové obrázky
+
+Přehled výsledků pro BLUNT model je seřazen v odděleném [souboru](VysledkyBLUNT.pdf).
